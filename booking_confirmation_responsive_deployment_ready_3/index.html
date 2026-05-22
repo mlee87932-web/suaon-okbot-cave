@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Booking Confirmed | Okbot Cave</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;600;700;800&amp;family=Atkinson+Hyperlegible+Next:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#ffcdb1",
+                        "tertiary-fixed-dim": "#c7c6c6",
+                        "secondary-fixed": "#ffdbc9",
+                        "surface-variant": "#e5e2de",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#ebe8e4",
+                        "surface-container-highest": "#e5e2de",
+                        "surface-container-low": "#f6f3ef",
+                        "surface": "#fcf9f5",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f3f0ec",
+                        "secondary": "#7c5640",
+                        "primary-container": "#1b4332",
+                        "on-primary-container": "#86af99",
+                        "primary": "#012d1d",
+                        "on-secondary-fixed-variant": "#613f2a",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#c1c8c2",
+                        "primary-fixed-dim": "#a5d0b9",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#a5d0b9",
+                        "outline": "#717973",
+                        "on-secondary-container": "#7a553f",
+                        "on-surface": "#1c1c19",
+                        "surface-container": "#f0ede9",
+                        "on-tertiary-container": "#a7a6a6",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#c1ecd4",
+                        "on-secondary-fixed": "#2f1504",
+                        "tertiary-container": "#3b3c3c",
+                        "secondary-fixed-dim": "#edbca1",
+                        "inverse-surface": "#31302e",
+                        "background": "#fcf9f5",
+                        "surface-dim": "#dcdad6",
+                        "surface-tint": "#3f6653",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#464747",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-background": "#1c1c19",
+                        "on-primary-fixed-variant": "#274e3d",
+                        "on-primary-fixed": "#002114",
+                        "surface-bright": "#fcf9f5",
+                        "on-tertiary-fixed": "#1b1c1c",
+                        "tertiary-fixed": "#e3e2e2",
+                        "tertiary": "#252626",
+                        "on-surface-variant": "#414844"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "base": "8px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "64px",
+                        "xl": "80px",
+                        "sm": "12px",
+                        "xs": "4px",
+                        "lg": "48px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Chivo"],
+                        "headline-lg-mobile": ["Chivo"],
+                        "label-md": ["Atkinson Hyperlegible Next"],
+                        "body-md": ["Atkinson Hyperlegible Next"],
+                        "body-lg": ["Atkinson Hyperlegible Next"],
+                        "display-lg": ["Chivo"],
+                        "headline-md": ["Chivo"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .rugged-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(1, 45, 29, 0.1);
+        }
+        .bento-card {
+            border: 1px solid rgba(113, 121, 115, 0.15);
+            transition: all 0.2s ease;
+        }
+        .bento-card:hover {
+            border-color: rgba(1, 45, 29, 0.3);
+        }
+        body {
+            background-color: #fcf9f5;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-background min-h-screen">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky bg-surface z-40 border-b border-outline-variant/15">
+<div class="flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 w-full max-w-[1280px] mx-auto">
+<div class="flex items-center gap-4">
+<button class="transition-colors duration-200 active:scale-95 text-primary">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary">Booking Confirmed</h1>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<nav class="flex gap-6">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Explore</a>
+<a class="font-label-md text-label-md text-primary font-bold transition-colors" href="#">My Tours</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Safety</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Profile</a>
+</nav>
+<button class="transition-colors duration-200 active:scale-95 text-primary">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+</div>
+<!-- Mobile Share -->
+<button class="md:hidden transition-colors duration-200 active:scale-95 text-primary">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+</div>
+</header>
+<main class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+<!-- Hero Confirmation Section -->
+<div class="flex flex-col items-center text-center mb-xl">
+<div class="w-20 h-20 rounded-full bg-primary flex items-center justify-center mb-md animate-bounce">
+<span class="material-symbols-outlined text-white text-[48px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h2 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-primary mb-xs">Your Expedition is Confirmed</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Pack your gear and prepare for the unknown. Your adventure at Okbot Cave starts soon. Your booking details are secured below.</p>
+</div>
+<!-- Main Bento Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Booking Summary Card -->
+<div class="md:col-span-7 bento-card bg-surface-container-low p-lg rounded-lg rugged-shadow relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[128px]" data-icon="landscape">landscape</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-md border-b border-outline-variant/20 pb-base">Stalactite Trail</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-md mb-lg">
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-secondary" data-icon="calendar_today">calendar_today</span>
+<div>
+<p class="font-label-md text-label-md uppercase text-on-surface-variant">Date</p>
+<p class="font-body-lg text-body-lg font-bold">June 14, 2024</p>
+</div>
+</div>
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-secondary" data-icon="schedule">schedule</span>
+<div>
+<p class="font-label-md text-label-md uppercase text-on-surface-variant">Time</p>
+<p class="font-body-lg text-body-lg font-bold">09:00 AM (Sharp)</p>
+</div>
+</div>
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-secondary" data-icon="group">group</span>
+<div>
+<p class="font-label-md text-label-md uppercase text-on-surface-variant">Party</p>
+<p class="font-body-lg text-body-lg font-bold">2 Adults</p>
+</div>
+</div>
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-secondary" data-icon="confirmation_number">confirmation_number</span>
+<div>
+<p class="font-label-md text-label-md uppercase text-on-surface-variant">Booking ID</p>
+<p class="font-body-lg text-body-lg font-bold">OK-992348B</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-base pt-md border-t border-outline-variant/20">
+<button class="flex-1 bg-primary text-white py-4 px-md font-label-md text-label-md rounded-lg hover:bg-primary-container transition-all flex items-center justify-center gap-base">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+                        Download Receipt
+                    </button>
+<button class="flex-1 border-2 border-secondary text-secondary py-4 px-md font-label-md text-label-md rounded-lg hover:bg-secondary/5 transition-all flex items-center justify-center gap-base">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                        Return to Dashboard
+                    </button>
+</div>
+</div>
+<!-- Digital Pass Card -->
+<div class="md:col-span-5 bento-card bg-primary-container p-lg rounded-lg rugged-shadow text-on-primary flex flex-col items-center justify-center">
+<div class="text-center mb-md">
+<h3 class="font-headline-md text-headline-md text-on-primary-container">Digital Expedition Pass</h3>
+<p class="font-body-md text-on-primary-container/80">Scan at the Base Camp entrance</p>
+</div>
+<div class="bg-white p-md rounded-xl mb-md">
+<img alt="Digital Check-in QR Code" class="w-64 h-64 object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uh6jv3Acf0wal5i9MWak7LYm9c0_bZzZEbrV_8aaOg92acFOJwYliceoxUedcViLuxj8zIwss62ukWDkctjn21RC75bHocn2TOsoekPemd4SOa6yNwucm054RZ_BQ0-42Ubgh4WfKbyq4QlljARcZPSdul16-QDq6zPx2FzQ5ejKtSbElOCadjxMFBfw2v2I2TO74XP_oqQC-RTu1Afza5ZXo296cMcjFMjvtMbIktVRucyH6el1M5Pev4"/>
+</div>
+<div class="flex items-center gap-sm bg-primary/30 px-md py-base rounded-full text-on-primary-container">
+<span class="material-symbols-outlined text-sm" data-icon="lock">lock</span>
+<span class="font-label-md text-label-md">Secure Encrypted Token</span>
+</div>
+</div>
+<!-- Next Steps / Safety Section -->
+<div class="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-gutter">
+<!-- Safety Prep -->
+<div class="bento-card bg-surface p-md rounded-lg">
+<div class="flex items-center gap-sm mb-base">
+<span class="material-symbols-outlined text-primary" data-icon="warning">warning</span>
+<h4 class="font-headline-md text-headline-md">Safety Preparation</h4>
+</div>
+<ul class="space-y-sm">
+<li class="flex items-start gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="check_small">check_small</span>
+<span>Wear closed-toe hiking boots with good grip.</span>
+</li>
+<li class="flex items-start gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="check_small">check_small</span>
+<span>Arrive 15 minutes before your time slot.</span>
+</li>
+<li class="flex items-start gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="check_small">check_small</span>
+<span>Hydration packs are recommended (max 2L).</span>
+</li>
+</ul>
+</div>
+<!-- Next Steps -->
+<div class="bento-card bg-surface p-md rounded-lg">
+<div class="flex items-center gap-sm mb-base">
+<span class="material-symbols-outlined text-primary" data-icon="list_alt">list_alt</span>
+<h4 class="font-headline-md text-headline-md">Next Steps</h4>
+</div>
+<ul class="space-y-sm">
+<li class="flex items-start gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="arrow_forward">arrow_forward</span>
+<span>Complete the online waiver in your profile.</span>
+</li>
+<li class="flex items-start gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="arrow_forward">arrow_forward</span>
+<span>Check local weather conditions for the day.</span>
+</li>
+<li class="flex items-start gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="arrow_forward">arrow_forward</span>
+<span>Review the cave conservation guidelines.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Weather Widget -->
+<div class="md:col-span-4 bento-card bg-surface p-md rounded-lg flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<h4 class="font-label-md text-label-md uppercase text-on-surface-variant tracking-wider">Cave Conditions</h4>
+<span class="bg-primary/10 text-primary px-sm py-xs rounded font-label-md text-xs">STABLE</span>
+</div>
+<div class="py-md flex items-center justify-around">
+<div class="text-center">
+<span class="material-symbols-outlined text-secondary text-3xl mb-xs" data-icon="device_thermostat">device_thermostat</span>
+<p class="font-body-lg text-body-lg font-bold">14°C</p>
+<p class="font-label-md text-xs text-on-surface-variant">Temp</p>
+</div>
+<div class="text-center">
+<span class="material-symbols-outlined text-secondary text-3xl mb-xs" data-icon="humidity_mid">humidity_mid</span>
+<p class="font-body-lg text-body-lg font-bold">85%</p>
+<p class="font-label-md text-xs text-on-surface-variant">Moisture</p>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant italic text-center">Last updated: 10 mins ago</p>
+</div>
+</div>
+<!-- Atmospheric Footer Image -->
+<div class="mt-xl rounded-xl overflow-hidden h-64 relative group">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+<img alt="Cave Interior" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A cinematic, low-angle shot of a majestic underground cavern with jagged stalactites hanging from the ceiling. A warm golden light from a distant explorer's headlamp illuminates the damp limestone textures and earthy brown hues. The scene is shrouded in mist, creating a sense of rugged mystery and professionalism. The lighting is high-contrast, echoing the premium outdoor field-guide aesthetic of the brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFCwhQYUmKtuQbKHES3rPmEYPfEWIYNUwb92DZWd5OXoVEi_85oSiChPZwRmsqE27n9ea7xzpV5107aWBdoSsyUGkVVcAyoexaYoSjCvbvJ3StSFpXwaqgzs6FSz99J59u5vq872GESqux3JzpdWSPHhqh1RxasRjmXLvlvpT3A_lvJ60xLveLNaXMs4QGKw9R2WdqSyUt5Hg3S0IMEn6zow-qtYXJ9ONBQgYE54wNIIDjxLIbApj8PiTM4zvnNIQ8GvpyjA2kQ7o"/>
+<div class="absolute bottom-md left-md z-20">
+<p class="font-display-lg text-white text-headline-md">See you in the depths.</p>
+<p class="font-body-md text-white/80">Okbot Cave Conservation Team</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Hidden on Desktop) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface border-t border-outline-variant/10">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-label-md text-[10px]">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="confirmation_number">confirmation_number</span>
+<span class="font-label-md text-[10px]">My Tours</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<span class="font-label-md text-[10px]">Safety</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-[10px]">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for the QR code
+        document.querySelector('.bg-white.p-md.rounded-xl').addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.02)';
+            this.style.transition = 'transform 0.3s ease';
+        });
+        document.querySelector('.bg-white.p-md.rounded-xl').addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+        });
+    </script>
+</body></html>
