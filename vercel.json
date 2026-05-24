@@ -1,0 +1,11 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/cave-history", "destination": "/cave-history/index.html" },
+    { "source": "/cave-guide", "destination": "/cave-guide/index.html" },
+    { "source": "/exploration", "destination": "/exploration/index.html" },
+    { "source": "/safety", "destination": "/safety/index.html" },
+    { "source": "/booking", "destination": "/booking/index.html" }
+  ]
+}

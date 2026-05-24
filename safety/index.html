@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<title>Safety Guidelines - Okbot Cave</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@600;700;800&family=Atkinson+Hyperlegible+Next:wght@400;600&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;display:inline-block;vertical-align:middle}</style>
+<style>
+.emergency-shimmer{background:linear-gradient(90deg,#ba1a1a 0%,#ef4444 50%,#ba1a1a 100%);background-size:200% auto;animation:shimmer 3s linear infinite;}
+@keyframes shimmer{to{background-position:200% center}}
+.checklist-item{cursor:pointer;transition:all 0.2s;}
+.checklist-item:hover{border-color:#012d1d!important;}
+.checklist-item.checked{background:#f0fdf4!important;border-color:#012d1d!important;}
+</style>
+</head>
+<body style="background:#fcf9f5;font-family:'Atkinson Hyperlegible Next',sans-serif;margin:0;padding-bottom:80px;min-height:100vh">
+<header style="position:fixed;top:0;left:0;width:100%;z-index:50;background:rgba(252,249,245,0.9);border-bottom:1px solid rgba(193,200,194,0.2);backdrop-filter:blur(12px);height:64px">
+<div style="max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 24px;height:64px">
+<a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none">
+<span class="material-symbols-outlined" style="color:#012d1d">explore</span>
+<span style="font-family:Chivo,sans-serif;font-size:20px;font-weight:700;color:#012d1d">Okbot Cave</span>
+</a>
+<nav style="display:flex;gap:32px">
+<a href="/" style="color:#414844;text-decoration:none;font-size:14px;font-weight:600">Welcome</a>
+<a href="/cave-history/" style="color:#414844;text-decoration:none;font-size:14px;font-weight:600">History</a>
+<a href="/cave-guide/" style="color:#414844;text-decoration:none;font-size:14px;font-weight:600">Guide</a>
+<a href="/safety/" style="color:#012d1d;text-decoration:none;font-size:14px;font-weight:600">Safety</a>
+</nav>
+<span class="material-symbols-outlined" style="color:#414844">account_circle</span>
+</div>
+</header>
+<main style="margin-top:64px">
+<section style="background:#f6f3ef;padding:48px 24px">
+<div style="max-width:1280px;margin:0 auto">
+<span style="display:inline-block;background:#012d1d;color:white;font-size:12px;font-weight:600;padding:4px 12px;border-radius:4px;margin-bottom:8px">SAFETY FIRST</span>
+<h1 style="font-family:Chivo,sans-serif;font-size:clamp(24px,4vw,32px);color:#012d1d;margin:0 0 8px">Security Guidelines</h1>
+<p style="color:#414844;font-size:18px;line-height:1.6;max-width:600px;margin:0">Your safety is our priority. Please adhere to these rules for a secure exploration in low-light conditions.</p>
+</div>
+</section>
+<section style="padding:32px 24px">
+<div style="max-width:1280px;margin:0 auto">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
+<div class="checklist-item" onclick="this.classList.toggle('checked')" style="display:flex;align-items:center;gap:16px;padding:20px;background:white;border:2px solid rgba(193,200,194,0.5);border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,0.05)">
+<div style="width:48px;height:48px;border-radius:8px;background:#1b4332;display:flex;align-items:center;justify-content:center;flex-shrink:0"><span class="material-symbols-outlined" style="color:#86af99">hardware</span></div>
+<div style="flex:1"><div style="font-weight:700;font-size:16px;color:#1c1c19">Wear a Helmet</div><div style="font-size:13px;color:#414844">Compulsory at all times</div></div>
+<span class="material-symbols-outlined check-icon" style="color:#c1c8c2;font-size:24px">check_circle</span>
+</div>
+<div class="checklist-item" onclick="this.classList.toggle('checked')" style="display:flex;align-items:center;gap:16px;padding:20px;background:white;border:2px solid rgba(193,200,194,0.5);border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,0.05)">
+<div style="width:48px;height:48px;border-radius:8px;background:#1b4332;display:flex;align-items:center;justify-content:center;flex-shrink:0"><span class="material-symbols-outlined" style="color:#86af99">person_pin</span></div>
+<div style="flex:1"><div style="font-weight:700;font-size:16px;color:#1c1c19">Follow the Guide</div><div style="font-size:13px;color:#414844">Stay within visual contact</div></div>
+<span class="material-symbols-outlined check-icon" style="color:#c1c8c2;font-size:24px">check_circle</span>
+</div>
+<div class="checklist-item" onclick="this.classList.toggle('checked')" style="display:flex;align-items:center;gap:16px;padding:20px;background:white;border:2px solid rgba(193,200,194,0.5);border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,0.05)">
+<div style="width:48px;height:48px;border-radius:8px;background:#1b4332;display:flex;align-items:center;justify-content:center;flex-shrink:0"><span class="material-symbols-outlined" style="color:#86af99">delete</span></div>
+<div style="flex:1"><div style="font-weight:700;font-size:16px;color:#1c1c19">No Littering</div><div style="font-size:13px;color:#414844">Leave no trace behind</div></div>
+<span class="material-symbols-outlined check-icon" style="color:#c1c8c2;font-size:24px">check_circle</span>
+</div>
+<div class="checklist-item" onclick="this.classList.toggle('checked')" style="display:flex;align-items:center;gap:16px;padding:20px;background:white;border:2px solid rgba(193,200,194,0.5);border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,0.05)">
+<div style="width:48px;height:48px;border-radius:8px;background:#1b4332;display:flex;align-items:center;justify-content:center;flex-shrink:0"><span class="material-symbols-outlined" style="color:#86af99">signpost</span></div>
+<div style="flex:1"><div style="font-weight:700;font-size:16px;color:#1c1c19">Stay on Paths</div><div style="font-size:13px;color:#414844">Engineered for your safety</div></div>
+<span class="material-symbols-outlined check-icon" style="color:#c1c8c2;font-size:24px">check_circle</span>
+</div>
+</div>
+</div>
+</section>
+<section style="padding:32px 24px">
+<div style="max-width:1280px;margin:0 auto">
+<div style="background:#ffdad6;border:2px solid #ba1a1a;border-radius:16px;padding:40px">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center">
+<div>
+<div style="display:flex;align-items:center;gap:8px;color:#ba1a1a;margin-bottom:8px">
+<span class="material-symbols-outlined">warning</span>
+<span style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em">Urgent Assistance</span>
+</div>
+<h2 style="font-family:Chivo,sans-serif;font-size:clamp(20px,3vw,28px);color:#93000a;margin:0 0 12px">In Case of Emergency</h2>
+<p style="color:#93000a;font-size:16px;line-height:1.6;margin:0">If you are separated from your group or witness an accident, use the emergency hotline immediately.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<a class="emergency-shimmer" href="tel:1-800-652-6872" style="display:flex;align-items:center;justify-content:center;gap:12px;color:white;text-decoration:none;padding:20px 24px;border-radius:12px;font-weight:700;font-size:18px;box-shadow:0 4px 20px rgba(186,26,26,0.4)">
+<span class="material-symbols-outlined">emergency</span>Emergency Assistance
+</a>
+<div style="text-align:center;background:rgba(255,255,255,0.5);padding:16px;border-radius:8px;border:1px solid rgba(186,26,26,0.2)">
+<div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#93000a;opacity:0.7;letter-spacing:0.1em;margin-bottom:4px">24/7 Hotline</div>
+<a href="tel:1-800-652-6872" style="display:flex;align-items:center;justify-content:center;gap:8px;color:#ba1a1a;text-decoration:none;font-weight:800;font-size:22px">
+<span class="material-symbols-outlined">call</span>1-800-OKBOT-SAFE
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section style="position:relative;height:300px;overflow:hidden;margin-top:48px">
+<img alt="Cave tunnel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPTZXwR-z5rNW5v80VPMVXqJFp50lF5rbwY2CH7TxaLOeG8J8tzy7SnWPHGvIOcwXhuorpLPu8QHXoLSJf0I7vFX599GXnhpmnCqWRu5KvG_P6oQ0Nhm3M73ekwUlYmHqoB3-JsDHCuPsKARJQfKCIy6J3g8_j6pEVlS6bWk25p6BKa-JhusBZFNDlcm5E2FnBNTwU8H1VkAIl4M3whO_06bKVzjiYGSQZCMbof483lyn70xCL8N-NBtBvtepJPDST-Xt_STnjbw8" style="width:100%;height:100%;object-fit:cover"/>
+<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(1,45,29,0.95),transparent);display:flex;flex-direction:column;justify-content:flex-end;padding:32px 24px">
+<div style="max-width:1280px;margin:0 auto;width:100%">
+<div style="font-size:12px;color:white;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px">Gear Up</div>
+<h2 style="font-family:Chivo,sans-serif;font-size:clamp(24px,4vw,48px);color:white;margin:0 0 8px">Prepare for Adventure</h2>
+<p style="color:rgba(255,255,255,0.8);font-size:16px;max-width:500px;margin:0">Your journey into the depths begins here. Ensure all equipment is checked before entry.</p>
+</div>
+</div>
+</section>
+</main>
+<nav style="position:fixed;bottom:0;left:0;width:100%;z-index:50;background:rgba(252,249,245,0.97);border-top:1px solid rgba(193,200,194,0.3);backdrop-filter:blur(12px)">
+<div style="max-width:1280px;margin:0 auto;display:flex;justify-content:space-around;align-items:center;height:72px;padding:0 8px">
+<a href="/" style="display:flex;flex-direction:column;align-items:center;color:#414844;text-decoration:none;flex:1;padding:8px 0"><span class="material-symbols-outlined">home</span><span style="font-size:10px;font-weight:600">Welcome</span></a>
+<a href="/cave-history/" style="display:flex;flex-direction:column;align-items:center;color:#414844;text-decoration:none;flex:1;padding:8px 0"><span class="material-symbols-outlined">history_edu</span><span style="font-size:10px;font-weight:600">History</span></a>
+<a href="/cave-guide/" style="display:flex;flex-direction:column;align-items:center;color:#414844;text-decoration:none;flex:1;padding:8px 0"><span class="material-symbols-outlined">map</span><span style="font-size:10px;font-weight:600">Guide</span></a>
+<a href="/safety/" style="display:flex;flex-direction:column;align-items:center;color:#012d1d;text-decoration:none;flex:1;padding:8px 0"><span class="material-symbols-outlined">security</span><span style="font-size:10px;font-weight:600">Safety</span></a>
+</div>
+</nav>
+<script>
+document.querySelectorAll('.checklist-item').forEach(item => {
+  item.addEventListener('click', function() {
+    const icon = this.querySelector('.check-icon');
+    if(this.classList.contains('checked')) {
+      icon.style.color = '#012d1d';
+    } else {
+      icon.style.color = '#c1c8c2';
+    }
+  });
+});
+</script>
+</body></html>
