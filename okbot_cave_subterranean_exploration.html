@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+    <title>Okbot Cave - Subterranean Exploration</title>
+    
+    <!-- Libraries -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/history@5/umd/history.development.js"></script>
+    <script src="https://unpkg.com/react-router@6.3.0/umd/react-router.development.js"></script>
+    <script src="https://unpkg.com/react-router-dom@6.3.0/umd/react-router-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;600;700;800&family=Atkinson+Hyperlegible+Next:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#012d1d",
+                        "primary-container": "#1b4332",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#86af99",
+                        "secondary": "#7c5640",
+                        "secondary-container": "#ffcdb1",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#7a553f",
+                        "background": "#fcf9f5",
+                        "on-background": "#1c1c19",
+                        "surface": "#fcf9f5",
+                        "on-surface": "#1c1c19",
+                        "surface-variant": "#e5e2de",
+                        "on-surface-variant": "#414844",
+                        "surface-container": "#f0ede9",
+                        "surface-container-low": "#f6f3ef",
+                        "surface-container-high": "#ebe8e4",
+                        "surface-container-highest": "#e5e2de",
+                        "outline": "#717973",
+                        "outline-variant": "#c1c8c2",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#c1ecd4",
+                        "primary-fixed-dim": "#a5d0b9",
+                        "on-primary-fixed": "#002114"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "64px",
+                        "xs": "4px",
+                        "sm": "12px",
+                        "md": "24px",
+                        "lg": "48px",
+                        "xl": "80px",
+                        "base": "8px"
+                    },
+                    fontFamily: {
+                        "chivo": ["Chivo", "sans-serif"],
+                        "atkinson": ["Atkinson Hyperlegible Next", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Atkinson Hyperlegible Next', sans-serif;
+            background-color: #fcf9f5;
+            color: #1c1c19;
+        }
+        .font-headline { font-family: 'Chivo', sans-serif; }
+        .text-shadow-hard {
+            text-shadow: 2px 2px 0px rgba(1, 45, 29, 0.5);
+        }
+        .scrim-hero {
+            background: linear-gradient(to top, rgba(1, 45, 29, 0.95) 0%, rgba(1, 45, 29, 0.5) 40%, rgba(1, 45, 29, 0) 100%);
+        }
+        .map-layer {
+            background-image: radial-gradient(#717973 0.5px, transparent 0.5px);
+            background-size: 16px 16px;
+        }
+        .emergency-shimmer {
+            background: linear-gradient(90deg, #ba1a1a 0%, #ef4444 50%, #ba1a1a 100%);
+            background-size: 200% auto;
+            animation: shimmer 3s linear infinite;
+        }
+        @keyframes shimmer {
+            to { background-position: 200% center; }
+        }
+        .rugged-outline {
+            border: 1px solid rgba(113, 121, 115, 0.15);
+        }
+        @media (min-width: 1024px) {
+            .desktop-container {
+                max-width: 1200px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { createRoot } = ReactDOM;
+        const { MemoryRouter, Routes, Route, Link, useNavigate, useLocation } = ReactRouterDOM;
+
+        // --- Shared Components ---
+
+        const TopAppBar = () => {
+            const navigate = useNavigate();
+            return (
+                <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant/15 transition-all">
+                    <div class="flex items-center gap-base active:scale-95 transition-transform cursor-pointer" onClick={() => navigate('/')}>
+                        <span class="material-symbols-outlined text-primary" data-icon="explore">explore</span>
+                        <h1 class="font-headline text-2xl font-bold text-primary">Okbot Cave</h1>
+                    </div>
+                    <nav class="hidden md:flex items-center gap-lg">
+                        <Link to="/" class="font-semibold text-primary hover:text-primary-container transition-colors">Welcome</Link>
+                        <Link to="/history" class="font-semibold text-on-surface-variant hover:text-primary transition-colors">History</Link>
+                        <Link to="/guide" class="font-semibold text-on-surface-variant hover:text-primary transition-colors">Guide</Link>
+                        <Link to="/safety" class="font-semibold text-on-surface-variant hover:text-primary transition-colors">Safety</Link>
+                    </nav>
+                    <div class="flex items-center gap-md">
+                        <button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-all">account_circle</button>
+                    </div>
+                </header>
+            );
+        };
+
+        const BottomNavBar = () => {
+            const location = useLocation();
+            const isActive = (path) => location.pathname === path;
+
+            return (
+                <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-base pb-safe h-20 bg-surface border-t border-outline-variant/15 shadow-2xl md:hidden">
+                    <Link to="/" class={`flex flex-col items-center justify-center flex-1 transition-all ${isActive('/') ? 'text-primary' : 'text-on-surface-variant'}`}>
+                        <span class="material-symbols-outlined" style={isActive('/') ? {fontVariationSettings: "'FILL' 1"} : {}}>home</span>
+                        <span class="text-xs font-semibold">Welcome</span>
+                    </Link>
+                    <Link to="/history" class={`flex flex-col items-center justify-center flex-1 transition-all ${isActive('/history') ? 'text-primary' : 'text-on-surface-variant'}`}>
+                        <span class="material-symbols-outlined" style={isActive('/history') ? {fontVariationSettings: "'FILL' 1"} : {}}>history_edu</span>
+                        <span class="text-xs font-semibold">History</span>
+                    </Link>
+                    <Link to="/guide" class={`flex flex-col items-center justify-center flex-1 transition-all ${isActive('/guide') ? 'text-primary' : 'text-on-surface-variant'}`}>
+                        <span class="material-symbols-outlined" style={isActive('/guide') ? {fontVariationSettings: "'FILL' 1"} : {}}>map</span>
+                        <span class="text-xs font-semibold">Guide</span>
+                    </Link>
+                    <Link to="/safety" class={`flex flex-col items-center justify-center flex-1 transition-all ${isActive('/safety') ? 'text-primary' : 'text-on-surface-variant'}`}>
+                        <span class="material-symbols-outlined" style={isActive('/safety') ? {fontVariationSettings: "'FILL' 1"} : {}}>security</span>
+                        <span class="text-xs font-semibold">Safety</span>
+                    </Link>
+                </nav>
+            );
+        };
+
+        // --- Screens ---
+
+        const HomePage = () => {
+            const navigate = useNavigate();
+            return (
+                <div class="pt-16 pb-24 md:pb-0">
+                    <section class="relative h-[707px] md:h-[795px] w-full overflow-hidden">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[10s] ease-out scale-105" style={{backgroundImage: "url('https://lh3.googleusercontent.com/aida/ADBb0ujCTtT0SUn7KOibsKrDRaXJn0ApgYuQk2tsBGCQu-iCjjMQQOSxBkkcgLaBsEkTvIXi26fGPDQUIJT5f-Jww5GLA-U_ThFvXiTKCWbJJzAXDeD6mYAnnQLEqS9wph5dvxtc9RAsU3pIY-PZ7hldLd_A3upuCg1W0OfPXLhO8edk8fhpF_E2k3kTP33awU-lffkBnmr_bsTUIgbJ-_aSsakgFl-HgApJWDJSiDK932OjxaagRlRD1uaPMg')"}}>
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full p-margin-mobile md:p-margin-desktop">
+                            <div class="desktop-container">
+                                <div class="inline-flex items-center gap-xs px-sm py-xs bg-secondary/90 text-on-secondary rounded-lg mb-sm">
+                                    <span class="material-symbols-outlined text-[16px]">location_on</span>
+                                    <span class="text-sm font-semibold">Suaon, Kapalong</span>
+                                </div>
+                                <h2 class="font-headline text-4xl md:text-6xl text-white text-shadow-hard max-w-2xl">Discover Okbot Cave</h2>
+                                <p class="text-lg md:text-xl text-surface-container-low max-w-xl mt-sm">Experience the raw majesty of Mindanao's hidden geological masterpiece. A journey through ancient limestone formations.</p>
+                                <button onClick={() => navigate('/guide')} class="mt-lg w-full md:w-fit px-xl h-[56px] bg-primary text-white font-headline text-xl rounded-lg flex items-center justify-center gap-sm active:scale-95 transition-all shadow-lg hover:shadow-primary/20">
+                                    Start Exploration <span class="material-symbols-outlined">arrow_forward</span>
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <div class="desktop-container">
+                        <section class="px-margin-mobile md:px-0 mt-lg grid grid-cols-2 md:grid-cols-4 gap-sm md:gap-md">
+                            <div class="p-md bg-surface-container border border-outline-variant/15 rounded-xl flex flex-col gap-xs">
+                                <span class="material-symbols-outlined text-secondary">thermostat</span>
+                                <span class="text-xs text-on-surface-variant font-bold uppercase">Temperature</span>
+                                <p class="text-2xl font-bold text-primary">24°C</p>
+                            </div>
+                            <div class="p-md bg-surface-container border border-outline-variant/15 rounded-xl flex flex-col gap-xs">
+                                <span class="material-symbols-outlined text-secondary">humidity_mid</span>
+                                <span class="text-xs text-on-surface-variant font-bold uppercase">Humidity</span>
+                                <p class="text-2xl font-bold text-primary">82%</p>
+                            </div>
+                            <div class="col-span-2 p-md bg-surface-container-high border border-outline-variant/15 rounded-xl flex items-center justify-between">
+                                <div>
+                                    <span class="text-xs text-on-surface-variant font-bold uppercase">Cave Status</span>
+                                    <p class="text-2xl font-bold text-primary">Open Today</p>
+                                </div>
+                                <div class="h-4 w-4 bg-[#2ecc71] rounded-full animate-pulse shadow-[0_0_12px_#2ecc71]"></div>
+                            </div>
+                        </section>
+
+                        <section class="px-margin-mobile md:px-0 mt-xl mb-xl">
+                            <h3 class="font-headline text-3xl text-primary mb-lg">Exploration Paths</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+                                <div class="group bg-surface-container rounded-xl overflow-hidden border border-outline-variant/15 hover:shadow-lg transition-all flex flex-col md:flex-row">
+                                    <div class="md:w-1/2 relative h-48 md:h-auto overflow-hidden">
+                                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfppAh1fkQh9w30AEh4xRUhYTfW0HDuOdpomqID_k-hGbZB92Uh0UdIH0QC60pc2PgZ72Yb2m3rvC_XlZzdstiLCWzjqLq74qVhOB9E2qQNcUiuHtEC64VmQk5KVIwVemxrjNatJ2ufb2Ktba39SeQ7NMswfLqWC4wi7OTMXGCdsgr8OwNEAGoRTrfp7iHEJBMawpRkm-9G3W2i1chdo9a70LOPiRqaEDcPD5U5ss-M7JoraKMzZolPc7SD5F0ize6-A-PbAjPfTo" class="absolute inset-0 w-full h-full object-cover transition-transform group-hover:scale-110" />
+                                        <span class="absolute top-sm left-sm px-2 py-1 bg-secondary-container text-on-secondary-container text-xs font-bold rounded">MODERATE</span>
+                                    </div>
+                                    <div class="p-lg md:w-1/2 flex flex-col">
+                                        <h4 class="font-headline text-xl text-primary font-bold">The Stalactite Trail</h4>
+                                        <p class="text-on-surface-variant mt-2 mb-4">A technical descent into the heart of the cave. Navigate through narrow limestone passages.</p>
+                                        <button onClick={() => navigate('/guide')} class="mt-auto text-secondary font-bold flex items-center gap-1 hover:gap-3 transition-all">Details & Booking <span class="material-symbols-outlined text-sm">arrow_forward</span></button>
+                                    </div>
+                                </div>
+                                <div class="group bg-surface-container rounded-xl overflow-hidden border border-outline-variant/15 hover:shadow-lg transition-all flex flex-col md:flex-row">
+                                    <div class="md:w-1/2 relative h-48 md:h-auto overflow-hidden">
+                                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoLGWJp2pTu9lOULRW8G6xQAr_YgIdmILuCaooBgsnKtK7gmbWIJKOpfUQHONLpcskcMjc0TAOdAzdf21Sr5JQAjJJe69NZu5YL4eDEPmNm_CnvyzyruagUnr6D1vMnF514_NMNXUAIIZ6tiwrLRt8Flhv4RoWfx7jdG_C0ou5Tk6Dd6_vPrmXpsusLNCCRGge6PgDOZgpepM39b9JZo7JqfsnBUfSE2-J_4uHyG-N9CpXOsawQBaDQ76GKDI1w3H4HnOU4LSPtUo" class="absolute inset-0 w-full h-full object-cover transition-transform group-hover:scale-110" />
+                                        <span class="absolute top-sm left-sm px-2 py-1 bg-primary-fixed text-on-primary-fixed text-xs font-bold rounded">EASY</span>
+                                    </div>
+                                    <div class="p-lg md:w-1/2 flex flex-col">
+                                        <h4 class="font-headline text-xl text-primary font-bold">Crystal Echoes Path</h4>
+                                        <p class="text-on-surface-variant mt-2 mb-4">Perfect for families. A gentle scenic walk through well-lit main chambers.</p>
+                                        <button onClick={() => navigate('/guide')} class="mt-auto text-secondary font-bold flex items-center gap-1 hover:gap-3 transition-all">Details & Booking <span class="material-symbols-outlined text-sm">arrow_forward</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            );
+        };
+
+        const HistoryPage = () => (
+            <div class="pt-16 pb-24 md:pb-0">
+                <section class="relative w-full h-[320px] overflow-hidden">
+                    <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_naJKLG9xBW7e3VeGK-1e3d0IxwbMv18oqgZnbPAhwzR2PNsMINddrDSXOAFRv68Dww8tcVgh6eqFCQbB46e8WQRcXuWg9_ubt8DsMCREzij6chxuodYBBKZOTf0P9veApgX6nakTT1vaa7sUlws9ZZONNVjc17EqqKNm3zqlMoGeGqhPwkBeXlM6zKBvWSjytOman3KjkT_g7o5Lqcoac0Q990Jhh4hQdWtcb5ibPC5FeyyWlAnSQvzInOhgWBaeqHK1reTxPRU" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent flex flex-col justify-end p-margin-mobile">
+                        <span class="bg-primary-container text-on-primary-container text-xs font-bold px-3 py-1 rounded-full w-fit mb-2 uppercase">Historical Record</span>
+                        <h1 class="font-headline text-3xl text-white">Chronicles of the Deep</h1>
+                    </div>
+                </section>
+                <div class="desktop-container">
+                    <section class="px-margin-mobile py-lg">
+                        <h2 class="font-headline text-2xl text-primary mb-4">The Discovery</h2>
+                        <div class="space-y-4 text-on-surface-variant">
+                            <p>Documented by European trappers in 1842, Okbot Cave's history runs much deeper. For generations, the <span class="font-bold text-secondary">Ata-Manobo people</span> have maintained an ancestral connection to these chambers.</p>
+                            <p>The modern discovery occurred when local frontiersmen followed geothermal vents, leading them to the "Cathedral of Whispers"—a massive chamber where wind creates haunting sounds.</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mt-8">
+                            <div class="bg-surface-container-low p-4 border-l-2 border-primary rounded-r-xl">
+                                <span class="font-headline text-2xl text-secondary block">1842</span>
+                                <p class="text-xs font-bold text-on-surface-variant uppercase">Trappers Arrive</p>
+                            </div>
+                            <div class="bg-surface-container-low p-4 border-l-2 border-primary rounded-r-xl">
+                                <span class="font-headline text-2xl text-secondary block">Ancient</span>
+                                <p class="text-xs font-bold text-on-surface-variant uppercase">Ata-Manobo Roots</p>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="px-margin-mobile py-lg bg-surface-container-low">
+                        <h2 class="font-headline text-2xl text-primary mb-6">Geological Wonders</h2>
+                        <div class="space-y-4">
+                            <div class="bg-surface p-md border border-outline-variant/20 rounded-xl">
+                                <div class="flex items-start gap-4">
+                                    <div class="bg-primary/10 p-2 rounded-lg text-primary"><span class="material-symbols-outlined">water_drop</span></div>
+                                    <div>
+                                        <h3 class="font-headline text-xl text-on-surface font-bold">Soda Straws</h3>
+                                        <p class="text-on-surface-variant">Hollow, crystalline tubes formed by mineral-rich water tension hanging from the ceiling.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-surface p-md border border-outline-variant/20 rounded-xl">
+                                <div class="flex items-start gap-4">
+                                    <div class="bg-primary/10 p-2 rounded-lg text-primary"><span class="material-symbols-outlined">layers</span></div>
+                                    <div>
+                                        <h3 class="font-headline text-xl text-on-surface font-bold">Limestone Foundations</h3>
+                                        <p class="text-on-surface-variant">Ancient sedimentary bedrock carved over millions of years by subterranean rivers.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        );
+
+        const GuidePage = () => {
+            return (
+                <div class="pt-16 pb-24 md:pb-0">
+                    <section class="bg-surface-container-low px-margin-mobile md:px-margin-desktop py-sm flex flex-col md:flex-row justify-between items-center border-b border-outline-variant/10">
+                        <div class="flex flex-wrap items-center gap-md mb-sm md:mb-0">
+                            <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Sector Overview: Main Gallery A-1</span>
+                            <div class="flex items-center gap-xs">
+                                <div class="w-2 h-2 rounded-full bg-primary"></div>
+                                <span class="text-xs font-bold text-primary">Main Gate: OPEN</span>
+                            </div>
+                        </div>
+                        <button class="bg-primary text-on-primary px-lg py-sm text-sm font-bold rounded-lg w-full md:w-auto hover:bg-primary-container transition-all">Book a Guided Tour</button>
+                    </section>
+                    <div class="max-w-[1280px] mx-auto px-gutter grid grid-cols-12 gap-gutter mt-md">
+                        <aside class="col-span-12 lg:col-span-3 space-y-gutter">
+                            <div class="bg-surface border border-outline-variant/15 p-md rounded-xl">
+                                <h2 class="font-headline text-xl text-primary mb-md flex items-center gap-sm">
+                                    <span class="material-symbols-outlined">sensors</span> Live Vitals
+                                </h2>
+                                <div class="space-y-md">
+                                    <div class="flex justify-between items-center p-sm bg-surface-container-low rounded-lg border border-outline-variant/5">
+                                        <div class="flex items-center gap-sm">
+                                            <span class="material-symbols-outlined text-on-surface-variant">thermostat</span>
+                                            <span class="text-xs font-bold text-on-surface-variant">Temp</span>
+                                        </div>
+                                        <span class="font-headline text-xl text-primary">14°C</span>
+                                    </div>
+                                    <div class="flex justify-between items-center p-sm bg-surface-container-low rounded-lg border border-outline-variant/5">
+                                        <div class="flex items-center gap-sm">
+                                            <span class="material-symbols-outlined text-on-surface-variant">humidity_percentage</span>
+                                            <span class="text-xs font-bold text-on-surface-variant">Moisture</span>
+                                        </div>
+                                        <span class="font-headline text-xl text-primary">88%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                        <section class="col-span-12 lg:col-span-9">
+                            <div class="relative bg-surface-container-low rounded-xl border border-outline-variant/30 h-[400px] md:h-[600px] overflow-hidden map-layer group">
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuARQKFBz05uVzCi2AiL76MijRP4c2Zoegt9oFTMXOKRG3liwvumz0DJr7oDLY2t-mx6RlFZ8GWxII9oakAkd3iz2ZZsaOVD52oEV2q8qff2h-eV69ON-vhFpvUPwYIGbzSNiuUAMzMN7IKmb8280LDJbYC7CGy06YZGYiz65fZ7_G6HelC6lZsklMVr9eLRQeup6HLLBWbaKFkvlNI0-ZuTaE8ELHFNnMj_YKga3oBsyH7xUiiAv0yKo0AOMJxKS9fJYQrI_Vv4C4w" class="w-full h-full object-cover mix-blend-multiply opacity-80" />
+                                </div>
+                                <div class="absolute top-md left-md bg-surface/90 backdrop-blur-sm p-sm rounded-lg border border-outline-variant/20 shadow-sm">
+                                    <h4 class="text-xs font-bold text-primary">SECTOR: MAIN GALLERY A-1</h4>
+                                    <p class="text-[10px] text-on-surface-variant">Last updated: 14 mins ago</p>
+                                </div>
+                                <div class="absolute bottom-md right-md flex flex-col gap-xs">
+                                    <button class="bg-surface p-sm rounded-lg border border-outline-variant/30 shadow-sm"><span class="material-symbols-outlined">add</span></button>
+                                    <button class="bg-surface p-sm rounded-lg border border-outline-variant/30 shadow-sm"><span class="material-symbols-outlined">remove</span></button>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            );
+        };
+
+        const SafetyPage = () => (
+            <div class="pt-16 pb-24 md:pb-0">
+                <section class="px-margin-mobile py-8 bg-surface-container-low">
+                    <span class="inline-block px-3 py-1 bg-primary text-on-primary text-xs font-bold rounded mb-2">SAFETY FIRST</span>
+                    <h2 class="font-headline text-3xl text-primary mb-2">Security Guidelines</h2>
+                    <p class="text-on-surface-variant">Your safety is our priority. Please adhere to these rules.</p>
+                </section>
+                <div class="desktop-container px-margin-mobile mt-8 space-y-4">
+                    <div class="grid gap-4 md:grid-cols-2">
+                        <div class="flex items-center gap-4 p-md bg-surface border-2 border-primary rounded-xl shadow-sm">
+                            <div class="flex-shrink-0 w-14 h-14 rounded-full bg-primary flex items-center justify-center text-white">
+                                <span class="material-symbols-outlined text-3xl">hardware</span>
+                            </div>
+                            <div class="flex-grow">
+                                <h3 class="font-bold text-lg text-primary">Wear a Helmet</h3>
+                                <p class="text-sm text-on-surface-variant">Compulsory at all times</p>
+                            </div>
+                            <span class="material-symbols-outlined text-primary text-3xl">check_circle</span>
+                        </div>
+                        <div class="flex items-center gap-4 p-md bg-surface border-2 border-primary rounded-xl shadow-sm">
+                            <div class="flex-shrink-0 w-14 h-14 rounded-full bg-primary flex items-center justify-center text-white">
+                                <span class="material-symbols-outlined text-3xl">person_pin</span>
+                            </div>
+                            <div class="flex-grow">
+                                <h3 class="font-bold text-lg text-primary">Follow the Guide</h3>
+                                <p class="text-sm text-on-surface-variant">Stay within visual contact</p>
+                            </div>
+                            <span class="material-symbols-outlined text-primary text-3xl">check_circle</span>
+                        </div>
+                    </div>
+                    <section class="mt-lg">
+                        <div class="p-6 bg-error-container rounded-2xl border-2 border-error shadow-lg">
+                            <div class="flex items-center gap-2 text-error mb-2">
+                                <span class="material-symbols-outlined font-bold">warning</span>
+                                <span class="text-xs font-bold uppercase">Urgent Assistance</span>
+                            </div>
+                            <h3 class="font-headline text-2xl text-on-error-container mb-4">In Case of Emergency</h3>
+                            <p class="text-on-error-container/90 mb-6">If separated or witness an accident, use the emergency hotline immediately.</p>
+                            <button class="w-full py-4 px-6 emergency-shimmer text-white rounded-xl font-bold flex items-center justify-center gap-3 active:scale-95 transition-transform shadow-xl">
+                                <span class="material-symbols-outlined">emergency</span> Emergency Assistance
+                            </button>
+                            <div class="mt-6 flex flex-col items-center justify-center gap-1 p-4 bg-white/40 rounded-lg">
+                                <span class="text-xs font-bold text-on-error-container/60 uppercase">24/7 Hotline</span>
+                                <div class="flex items-center gap-2 text-error font-extrabold text-xl">
+                                    <span class="material-symbols-outlined">call</span>
+                                    <span>1-800-OKBOT-SAFE</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        );
+
+        const App = () => {
+            return (
+                <MemoryRouter>
+                    <div class="min-h-screen flex flex-col bg-background selection:bg-primary-fixed selection:text-on-primary-fixed">
+                        <TopAppBar />
+                        <main class="flex-grow">
+                            <Routes>
+                                <Route path="/" element={<HomePage />} />
+                                <Route path="/history" element={<HistoryPage />} />
+                                <Route path="/guide" element={<GuidePage />} />
+                                <Route path="/safety" element={<SafetyPage />} />
+                            </Routes>
+                        </main>
+                        <BottomNavBar />
+                    </div>
+                </MemoryRouter>
+            );
+        };
+
+        const container = document.getElementById('root');
+        const root = createRoot(container);
+        root.render(<App />);
+    </script>
+</body>
+</html>
