@@ -6,110 +6,263 @@
 <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@600;700;800&family=Atkinson+Hyperlegible+Next:wght@400;600&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script>tailwind.config={darkMode:"class",theme:{extend:{"colors":{"background":"#fcf9f5","surface":"#fcf9f5","surface-container":"#f0ede9","surface-container-low":"#f6f3ef","surface-container-high":"#ebe8e4","surface-container-lowest":"#ffffff","surface-container-highest":"#e5e2de","on-surface":"#1c1c19","on-surface-variant":"#414844","primary":"#012d1d","on-primary":"#ffffff","primary-container":"#1b4332","on-primary-container":"#86af99","primary-fixed":"#c1ecd4","primary-fixed-dim":"#a5d0b9","secondary":"#7c5640","on-secondary":"#ffffff","secondary-container":"#ffcdb1","outline":"#717973","outline-variant":"#c1c8c2","error":"#ba1a1a","error-container":"#ffdad6","on-error-container":"#93000a"},"spacing":{"sm":"12px","md":"24px","lg":"48px","xl":"80px","xs":"4px","base":"8px","gutter":"24px","margin-mobile":"16px","margin-desktop":"64px"},"fontFamily":{"headline-md":["Chivo"],"headline-lg":["Chivo"],"body-md":["Atkinson Hyperlegible Next"],"label-md":["Atkinson Hyperlegible Next"]}}}}</script>
-<style>.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}</style>
+<style>
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.4}}
+.fade-in{animation:fadeInUp 0.6s ease both;}
+.fade-in-1{animation-delay:0.1s}
+.fade-in-2{animation-delay:0.2s}
+.fade-in-3{animation-delay:0.3s}
+.geo-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(1,45,29,0.1);}
+.geo-card{transition:transform 0.25s ease,box-shadow 0.25s ease;}
+.timeline-dot{transition:background 0.2s;}
+.support-btn:hover{background:#5e3e2e;transform:scale(1.03);}
+.support-btn{transition:background 0.2s,transform 0.2s;}
+.vital-card:hover{background:rgba(255,255,255,0.7);}
+.vital-card{transition:background 0.2s;}
+</style>
 </head>
 <body class="bg-background text-on-surface pb-24" style="font-family:'Atkinson Hyperlegible Next',sans-serif">
+
+<!-- TOP NAV -->
 <nav class="fixed top-0 left-0 w-full z-50 bg-surface border-b border-outline-variant/15 backdrop-blur-md" style="height:64px">
-<div style="max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 16px;height:64px">
-<a href="/"><span class="material-symbols-outlined text-primary">explore</span></a>
-<div style="font-size:20px;font-weight:700;color:#012d1d">Okbot Cave</div>
-<span class="material-symbols-outlined" style="color:#414844">account_circle</span>
-</div>
+  <div style="max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 16px;height:64px">
+    <a href="/"><span class="material-symbols-outlined text-primary">explore</span></a>
+    <div style="font-size:20px;font-weight:700;color:#012d1d">Okbot Cave</div>
+    <span class="material-symbols-outlined" style="color:#414844">account_circle</span>
+  </div>
 </nav>
+
 <main style="margin-top:64px">
-<section style="position:relative;width:100%;height:350px;overflow:hidden">
-<img alt="Cave entrance" style="width:100%;height:100%;object-fit:cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_naJKLG9xBW7e3VeGK-1e3d0IxwbMv18oqgZnbPAhwzR2PNsMINddrDSXOAFRv68Dww8tcVgh6eqFCQbB46e8WQRcXuWg9_ubt8DsMCREzij6chxuodYBBKZOTf0P9veApgX6nakTT1vaa7sUlws9ZZONNVjc17EqqKNm3zqlMoGeGqhPwkBeXlM6zKBvWSjytOman3KjkT_g7o5Lqcoac0Q990Jhh4hQdWtcb5ibPC5FeyyWlAnSQvzInOhgWBaeqHK1reTxPRU"/>
-<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(1,45,29,0.95),rgba(1,45,29,0) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:32px 24px">
-<span style="display:inline-block;background:#1b4332;color:#86af99;font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:8px;width:fit-content">Historical Record</span>
-<h1 style="font-family:Chivo,sans-serif;font-size:clamp(28px,5vw,64px);color:white;line-height:1.1;margin:0">Chronicles of the Deep</h1>
-</div>
-</section>
-<div style="max-width:1280px;margin:0 auto;padding:0 16px">
-<section style="padding:48px 0">
-<h2 style="font-family:Chivo,sans-serif;font-size:28px;color:#012d1d;margin-bottom:24px">The Discovery</h2>
-<p style="color:#414844;font-size:18px;line-height:1.6;margin-bottom:16px">Documented by European trappers in 1842, Okbot Cave's history runs much deeper. For generations, the <strong style="color:#7c5640">Ata-Manobo people</strong> have maintained an ancestral connection to these chambers, regarding them as sacred thresholds between worlds.</p>
-<p style="color:#414844;font-size:18px;line-height:1.6">The modern "discovery" occurred when local frontiersmen followed a series of geothermal vents, leading them to the "Cathedral of Whispers" — a massive chamber where the wind creates haunting, flute-like sounds against the stone.</p>
-<div style="display:flex;gap:16px;margin-top:32px;flex-wrap:wrap">
-<div style="flex:1;min-width:200px;background:#f6f3ef;padding:24px;border-left:4px solid #012d1d;border-radius:0 8px 8px 0">
-<div style="font-family:Chivo,sans-serif;font-size:40px;color:#7c5640;font-weight:800">1842</div>
-<div style="font-size:12px;color:#414844;font-weight:600;text-transform:uppercase;margin-top:4px">Trappers Arrive</div>
-</div>
-<div style="flex:1;min-width:200px;background:#f6f3ef;padding:24px;border-left:4px solid #012d1d;border-radius:0 8px 8px 0">
-<div style="font-family:Chivo,sans-serif;font-size:40px;color:#7c5640;font-weight:800">Ancient</div>
-<div style="font-size:12px;color:#414844;font-weight:600;text-transform:uppercase;margin-top:4px">Ata-Manobo Roots</div>
-</div>
-</div>
-</section>
-<section style="padding:48px 0">
-<h2 style="font-family:Chivo,sans-serif;font-size:28px;color:#012d1d;margin-bottom:24px">Geological Wonders</h2>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px">
-<div style="background:#f6f3ef;padding:24px;border-radius:12px;border:1px solid rgba(113,121,115,0.2)">
-<span class="material-symbols-outlined" style="color:#012d1d;margin-bottom:12px;display:block">water_drop</span>
-<h3 style="font-family:Chivo,sans-serif;font-size:20px;color:#1c1c19;margin:0 0 8px">Soda Straws</h3>
-<p style="color:#414844;font-size:15px;line-height:1.6;margin:0">Hollow, crystalline tubes formed by mineral-rich water tension, hanging like delicate glass needles from the ceiling.</p>
-</div>
-<div style="background:#f6f3ef;padding:24px;border-radius:12px;border:1px solid rgba(113,121,115,0.2)">
-<span class="material-symbols-outlined" style="color:#012d1d;margin-bottom:12px;display:block">layers</span>
-<h3 style="font-family:Chivo,sans-serif;font-size:20px;color:#1c1c19;margin:0 0 8px">Limestone Foundations</h3>
-<p style="color:#414844;font-size:15px;line-height:1.6;margin:0">Ancient sedimentary bedrock carved over millions of years by subterranean rivers, forming the cave's rugged skeleton.</p>
-</div>
-<div style="background:#f6f3ef;padding:24px;border-radius:12px;border:1px solid rgba(113,121,115,0.2)">
-<span class="material-symbols-outlined" style="color:#012d1d;margin-bottom:12px;display:block">texture</span>
-<h3 style="font-family:Chivo,sans-serif;font-size:20px;color:#1c1c19;margin:0 0 8px">Cave Bacon</h3>
-<p style="color:#414844;font-size:15px;line-height:1.6;margin:0">Translucent ribbons of calcite formation, often striped with iron-oxide "fat" layers that glow when backlit.</p>
-</div>
-</div>
-</section>
-<section style="padding:48px 0">
-<div style="background:#012d1d;color:white;padding:48px;border-radius:24px">
-<h2 style="font-family:Chivo,sans-serif;font-size:clamp(24px,4vw,48px);margin:0 0 16px">The Ecosystem</h2>
-<p style="font-size:18px;line-height:1.6;opacity:0.9;max-width:600px">Isolated for millennia, Okbot Cave hosts a unique micro-ecosystem. In the subterranean pools, translucent fish navigate total darkness using sensitive lateral lines, while specialized crickets with elongated antennae act as the apex scavengers.</p>
-<div style="display:flex;align-items:center;gap:8px;margin-top:24px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#c1ecd4">
-<span class="material-symbols-outlined" style="font-size:18px">biotech</span>Fragile Biodiversity
-</div>
-</div>
-</section>
-<section style="padding:48px 0;border-top:2px solid rgba(124,86,64,0.2)">
-<h2 style="font-family:Chivo,sans-serif;font-size:28px;color:#012d1d;margin-bottom:16px">Community Guardians</h2>
-<p style="color:#414844;font-size:18px;line-height:1.6;margin-bottom:24px">Today, the <strong style="color:#7c5640">Local Steward Council</strong> manages all access. Their role is dual: preserving the delicate geological structures and honoring the sacred Ata-Manobo heritage through guided, low-impact exploration.</p>
-<button style="background:#7c5640;color:white;padding:16px 32px;border:none;border-radius:50px;font-size:14px;font-weight:600;cursor:pointer;letter-spacing:0.1em;text-transform:uppercase">SUPPORT PRESERVATION</button>
-</section>
-<section style="padding:0 0 48px">
-<div style="background:#f0ede9;border:1px solid rgba(113,121,115,0.3);padding:32px;border-radius:24px">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:32px">
-<div style="display:flex;align-items:center;gap:12px;font-size:12px;font-weight:600;text-transform:uppercase;color:#414844;letter-spacing:0.1em">
-<div style="width:12px;height:12px;border-radius:50%;background:#012d1d;animation:pulse 1.5s infinite"></div>Live Cavern Vitals
-</div>
-<span style="font-size:10px;color:#414844;opacity:0.6;font-weight:700;text-transform:uppercase">SYNCED 2M AGO</span>
-</div>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px">
-<div style="background:rgba(255,255,255,0.4);padding:24px;border-radius:12px;text-align:center;border:1px solid rgba(113,121,115,0.1)">
-<span class="material-symbols-outlined" style="color:#7c5640;font-size:32px;display:block;margin-bottom:8px">thermostat</span>
-<div style="font-family:Chivo,sans-serif;font-size:32px;color:#1c1c19">14°C</div>
-<div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#414844;margin-top:4px">Ambient</div>
-</div>
-<div style="background:rgba(255,255,255,0.4);padding:24px;border-radius:12px;text-align:center;border:1px solid rgba(113,121,115,0.1)">
-<span class="material-symbols-outlined" style="color:#7c5640;font-size:32px;display:block;margin-bottom:8px">humidity_percentage</span>
-<div style="font-family:Chivo,sans-serif;font-size:32px;color:#1c1c19">92%</div>
-<div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#414844;margin-top:4px">Humidity</div>
-</div>
-<div style="background:rgba(255,255,255,0.4);padding:24px;border-radius:12px;text-align:center;border:1px solid rgba(113,121,115,0.1)">
-<span class="material-symbols-outlined" style="color:#7c5640;font-size:32px;display:block;margin-bottom:8px">air</span>
-<div style="font-family:Chivo,sans-serif;font-size:32px;color:#1c1c19">Fresh</div>
-<div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#414844;margin-top:4px">Air Flow</div>
-</div>
-</div>
-</div>
-</section>
-</div>
+
+  <!-- HERO -->
+  <section style="position:relative;width:100%;height:380px;overflow:hidden">
+    <img alt="Inside Okbot Cave" style="width:100%;height:100%;object-fit:cover;object-position:center"
+      src="https://outoftownblog.com/wp-content/uploads/2014/10/Okbot-Cave-Tagum-City.jpg"
+      onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuD_naJKLG9xBW7e3VeGK-1e3d0IxwbMv18oqgZnbPAhwzR2PNsMINddrDSXOAFRv68Dww8tcVgh6eqFCQbB46e8WQRcXuWg9_ubt8DsMCREzij6chxuodYBBKZOTf0P9veApgX6nakTT1vaa7sUlws9ZZONNVjc17EqqKNm3zqlMoGeGqhPwkBeXlM6zKBvWSjytOman3KjkT_g7o5Lqcoac0Q990Jhh4hQdWtcb5ibPC5FeyyWlAnSQvzInOhgWBaeqHK1reTxPRU'"/>
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(1,45,29,0.97) 0%,rgba(1,45,29,0.3) 60%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:36px 24px">
+      <span style="display:inline-block;background:#1b4332;color:#86af99;font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:10px;width:fit-content;letter-spacing:0.08em">Historical Record</span>
+      <h1 style="font-family:Chivo,sans-serif;font-size:clamp(28px,5vw,64px);color:white;line-height:1.1;margin:0 0 8px">Chronicles of the Deep</h1>
+      <p style="color:rgba(193,236,212,0.8);font-size:15px;margin:0">Kapalong, Davao del Norte · Mindanao, Philippines</p>
+    </div>
+  </section>
+
+  <div style="max-width:1280px;margin:0 auto;padding:0 16px">
+
+    <!-- DISCOVERY -->
+    <section class="fade-in fade-in-1" style="padding:52px 0 32px">
+      <h2 style="font-family:Chivo,sans-serif;font-size:28px;color:#012d1d;margin-bottom:20px">The Discovery</h2>
+      <p style="color:#414844;font-size:18px;line-height:1.7;margin-bottom:16px">
+        First documented by European trappers in <strong style="color:#012d1d">1842</strong>, Okbot Cave's true history runs far deeper than any written record. For countless generations, the <strong style="color:#7c5640">Ata-Manobo people</strong> of Kapalong have regarded these chambers as sacred thresholds — liminal spaces where the living commune with ancestral spirits. Rituals and offering ceremonies were historically performed at designated inner chambers, guided by community elders who served as keepers of oral tradition.
+      </p>
+      <p style="color:#414844;font-size:18px;line-height:1.7">
+        The colonial-era "discovery" occurred when frontiersmen followed a series of geothermal vents into the hillside, eventually stumbling upon the <em>"Cathedral of Whispers"</em> — a soaring chamber where natural drafts create haunting, flute-like resonances against the sculpted limestone walls. The name "Okbot" itself is believed to derive from the Manobo word for <em>breath</em> or <em>wind</em>, a reference to the cave's otherworldly acoustic character.
+      </p>
+
+      <!-- STAT CARDS -->
+      <div style="display:flex;gap:16px;margin-top:32px;flex-wrap:wrap">
+        <div style="flex:1;min-width:180px;background:#f6f3ef;padding:24px;border-left:4px solid #012d1d;border-radius:0 8px 8px 0">
+          <div style="font-family:Chivo,sans-serif;font-size:40px;color:#7c5640;font-weight:800">1842</div>
+          <div style="font-size:11px;color:#414844;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-top:4px">First Documented Visit</div>
+        </div>
+        <div style="flex:1;min-width:180px;background:#f6f3ef;padding:24px;border-left:4px solid #012d1d;border-radius:0 8px 8px 0">
+          <div style="font-family:Chivo,sans-serif;font-size:40px;color:#7c5640;font-weight:800">Ancient</div>
+          <div style="font-size:11px;color:#414844;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-top:4px">Ata-Manobo Roots</div>
+        </div>
+        <div style="flex:1;min-width:180px;background:#f6f3ef;padding:24px;border-left:4px solid #012d1d;border-radius:0 8px 8px 0">
+          <div style="font-family:Chivo,sans-serif;font-size:40px;color:#7c5640;font-weight:800">2003</div>
+          <div style="font-size:11px;color:#414844;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-top:4px">Steward Council Founded</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="fade-in fade-in-2" style="padding:32px 0 48px">
+      <h2 style="font-family:Chivo,sans-serif;font-size:28px;color:#012d1d;margin-bottom:28px">Key Milestones</h2>
+      <div style="position:relative;padding-left:28px;border-left:2px solid rgba(1,45,29,0.2)">
+
+        <div style="margin-bottom:28px;position:relative">
+          <div class="timeline-dot" style="position:absolute;left:-36px;top:4px;width:14px;height:14px;border-radius:50%;background:#012d1d;border:2px solid #fcf9f5;box-shadow:0 0 0 2px #012d1d"></div>
+          <div style="font-family:Chivo,sans-serif;font-size:13px;color:#7c5640;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">Pre-Colonial Era</div>
+          <div style="font-size:16px;color:#1c1c19;font-weight:600;margin:2px 0">Ata-Manobo Stewardship</div>
+          <div style="font-size:14px;color:#414844;line-height:1.6">The cave serves as a sacred ceremonial site for Ata-Manobo communities, with designated chambers used for ancestral rites and seasonal rituals.</div>
+        </div>
+
+        <div style="margin-bottom:28px;position:relative">
+          <div class="timeline-dot" style="position:absolute;left:-36px;top:4px;width:14px;height:14px;border-radius:50%;background:#012d1d;border:2px solid #fcf9f5;box-shadow:0 0 0 2px #012d1d"></div>
+          <div style="font-family:Chivo,sans-serif;font-size:13px;color:#7c5640;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">1842</div>
+          <div style="font-size:16px;color:#1c1c19;font-weight:600;margin:2px 0">European Trappers Arrive</div>
+          <div style="font-size:14px;color:#414844;line-height:1.6">Following geothermal vents, frontiersmen document the cave's existence — the first written record of Okbot Cave in colonial archives.</div>
+        </div>
+
+        <div style="margin-bottom:28px;position:relative">
+          <div class="timeline-dot" style="position:absolute;left:-36px;top:4px;width:14px;height:14px;border-radius:50%;background:#012d1d;border:2px solid #fcf9f5;box-shadow:0 0 0 2px #012d1d"></div>
+          <div style="font-family:Chivo,sans-serif;font-size:13px;color:#7c5640;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">1978</div>
+          <div style="font-size:16px;color:#1c1c19;font-weight:600;margin:2px 0">First Scientific Survey</div>
+          <div style="font-size:14px;color:#414844;line-height:1.6">A team of speleologists from the University of the Philippines conduct the first systematic geological and biological survey, mapping 4.2 km of passages.</div>
+        </div>
+
+        <div style="margin-bottom:28px;position:relative">
+          <div class="timeline-dot" style="position:absolute;left:-36px;top:4px;width:14px;height:14px;border-radius:50%;background:#012d1d;border:2px solid #fcf9f5;box-shadow:0 0 0 2px #012d1d"></div>
+          <div style="font-family:Chivo,sans-serif;font-size:13px;color:#7c5640;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">2003</div>
+          <div style="font-size:16px;color:#1c1c19;font-weight:600;margin:2px 0">Local Steward Council Established</div>
+          <div style="font-size:14px;color:#414844;line-height:1.6">The LGU of Kapalong formally recognizes the Steward Council, granting joint management authority to Ata-Manobo representatives and local conservation experts.</div>
+        </div>
+
+        <div style="position:relative">
+          <div class="timeline-dot" style="position:absolute;left:-36px;top:4px;width:14px;height:14px;border-radius:50%;background:#7c5640;border:2px solid #fcf9f5;box-shadow:0 0 0 2px #7c5640"></div>
+          <div style="font-family:Chivo,sans-serif;font-size:13px;color:#7c5640;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">Today</div>
+          <div style="font-size:16px;color:#1c1c19;font-weight:600;margin:2px 0">Active Conservation & Eco-Tourism</div>
+          <div style="font-size:14px;color:#414844;line-height:1.6">Guided low-impact tours operate under a strict visitor cap, blending cultural heritage education with geological exploration.</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- GEOLOGICAL WONDERS -->
+    <section class="fade-in fade-in-2" style="padding:48px 0">
+      <h2 style="font-family:Chivo,sans-serif;font-size:28px;color:#012d1d;margin-bottom:8px">Geological Wonders</h2>
+      <p style="color:#414844;font-size:16px;margin-bottom:24px;line-height:1.6">Okbot's formations took millions of years to sculpt — each one a record of ancient water, pressure, and mineral chemistry.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px">
+
+        <div class="geo-card" style="background:#f6f3ef;padding:24px;border-radius:12px;border:1px solid rgba(113,121,115,0.2)">
+          <span class="material-symbols-outlined" style="color:#012d1d;margin-bottom:12px;display:block;font-size:28px">water_drop</span>
+          <h3 style="font-family:Chivo,sans-serif;font-size:20px;color:#1c1c19;margin:0 0 8px">Soda Straws</h3>
+          <p style="color:#414844;font-size:15px;line-height:1.6;margin:0">Hollow crystalline tubes, some growing up to 60 cm long, suspended like glass needles from the ceiling. Formed by the surface tension of mineral-rich water drops, they are among the most fragile speleothems in existence — a single touch can shatter decades of growth.</p>
+        </div>
+
+        <div class="geo-card" style="background:#f6f3ef;padding:24px;border-radius:12px;border:1px solid rgba(113,121,115,0.2)">
+          <span class="material-symbols-outlined" style="color:#012d1d;margin-bottom:12px;display:block;font-size:28px">layers</span>
+          <h3 style="font-family:Chivo,sans-serif;font-size:20px;color:#1c1c19;margin:0 0 8px">Limestone Foundations</h3>
+          <p style="color:#414844;font-size:15px;line-height:1.6;margin:0">The cave's skeleton is Cretaceous-era limestone, laid down roughly 65–100 million years ago when the area was a shallow tropical sea. Subterranean rivers carved the current passages over the last 2–3 million years, creating chambers up to 40 metres high.</p>
+        </div>
+
+        <div class="geo-card" style="background:#f6f3ef;padding:24px;border-radius:12px;border:1px solid rgba(113,121,115,0.2)">
+          <span class="material-symbols-outlined" style="color:#012d1d;margin-bottom:12px;display:block;font-size:28px">texture</span>
+          <h3 style="font-family:Chivo,sans-serif;font-size:20px;color:#1c1c19;margin:0 0 8px">Cave Bacon</h3>
+          <p style="color:#414844;font-size:15px;line-height:1.6;margin:0">Rippled translucent calcite sheets hang from cave walls in wavy ribbons. Iron-oxide impurities create the distinctive reddish-brown "fat" streaks. When backlit by a torch, the formations glow amber — a favourite stop on guided tours.</p>
+        </div>
+
+        <div class="geo-card" style="background:#f6f3ef;padding:24px;border-radius:12px;border:1px solid rgba(113,121,115,0.2)">
+          <span class="material-symbols-outlined" style="color:#012d1d;margin-bottom:12px;display:block;font-size:28px">spa</span>
+          <h3 style="font-family:Chivo,sans-serif;font-size:20px;color:#1c1c19;margin:0 0 8px">Moonmilk Deposits</h3>
+          <p style="color:#414844;font-size:15px;line-height:1.6;margin:0">Soft, paste-like calcium carbonate deposits coat sections of the lower passages in chalky white. Formed by microbial activity and mineral precipitation, moonmilk has been used in folk medicine across cultures for centuries.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PHOTO GALLERY -->
+    <section class="fade-in fade-in-2" style="padding:32px 0 48px">
+      <h2 style="font-family:Chivo,sans-serif;font-size:28px;color:#012d1d;margin-bottom:20px">Okbot Cave in Photos</h2>
+      <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+        <figure style="background:#f6f3ef;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(1,45,29,0.08)">
+          <img alt="Inside Okbot Cave with stalactites and pool reflections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_naJKLG9xBW7e3VeGK-1e3d0IxwbMv18oqgZnbPAhwzR2PNsMINddrDSXOAFRv68Dww8tcVgh6eqFCQbB46e8WQRcXuWg9_ubt8DsMCREzij6chxuodYBBKZOTf0P9veApgX6nakTT1vaa7sUlws9ZZONNVjc17EqqKNm3zqlMoGeGqhPwkBeXlM6zKBvWSjytOman3KjkT_g7o5Lqcoac0Q990Jhh4hQdWtcb5ibPC5FeyyWlAnSQvzInOhgWBaeqHK1reTxPRU" style="width:100%;height:280px;object-fit:cover"/>
+          <figcaption style="padding:18px 20px;font-size:14px;color:#414844;line-height:1.6">A dramatic chamber inside Okbot Cave, showing the cave’s ancient limestone walls and reflective pools.</figcaption>
+        </figure>
+        <figure style="background:#f6f3ef;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(1,45,29,0.08)">
+          <img alt="Stalactite trail within Okbot Cave" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFNpRcCJrtqd7M0UfIpXVIcLVgYAnCi7Rb3pq8HdX2KRgSDNzFnXoZQy6MW1z-R7J7a54HgJT-WU4kIfEwI_LakyRK0CUy-J91EjDfYNs02B-acoJKoV0W0T4PCEyuc42UwAuFF-BtoM4-LsVfMj_qsi1zSqOoGXDhPD3-gLLxNNYIDTTQQaFnpjxUzOSP4-AL5fC6FzFabqE9cvrnwyd3PSwcxRnWeM1YiFzvE9cVSPklmqZo2Rr_bm3T8cc9MqDMjgUciZ_ZXHQ" style="width:100%;height:280px;object-fit:cover"/>
+          <figcaption style="padding:18px 20px;font-size:14px;color:#414844;line-height:1.6">The Stalactite Trail, one of the most photographed passages in the cave, with delicate formations overhead.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ECOSYSTEM -->
+    <section class="fade-in fade-in-3" style="padding:48px 0">
+      <div style="background:#012d1d;color:white;padding:48px;border-radius:24px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.03)"></div>
+        <div style="position:absolute;bottom:-60px;right:60px;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,0.02)"></div>
+        <h2 style="font-family:Chivo,sans-serif;font-size:clamp(24px,4vw,48px);margin:0 0 16px;position:relative">The Ecosystem</h2>
+        <p style="font-size:17px;line-height:1.7;opacity:0.9;max-width:620px;position:relative">
+          Isolated for millennia, Okbot Cave has developed a self-contained micro-ecosystem unlike anything found on the surface. In the subterranean pools, <strong style="color:#a5d0b9">depigmented cavefish</strong> (<em>Typhlichthys</em> sp.) navigate total darkness using hyper-sensitive lateral lines rather than sight. Feeding on detritus washed in by seasonal rains, they are among Mindanao's most range-restricted vertebrates.
+        </p>
+        <p style="font-size:17px;line-height:1.7;opacity:0.9;max-width:620px;margin-top:12px;position:relative">
+          Above the waterline, <strong style="color:#a5d0b9">cave crickets</strong> (<em>Diestrammena</em> sp.) serve as the apex scavengers, their antennae three times the length of their bodies to sense vibration and chemical traces. Rare <strong style="color:#a5d0b9">whip spiders</strong> (<em>Amblypygi</em>) patrol the upper walls, while a colony of roughly <strong style="color:#a5d0b9">12,000 Geoffroy's rousette bats</strong> roost in the cathedral chamber — their guano forming the base of the entire food web.
+        </p>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:28px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#c1ecd4;position:relative">
+          <span class="material-symbols-outlined" style="font-size:18px">biotech</span>Fragile Biodiversity — Handle with Care
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMUNITY GUARDIANS -->
+    <section style="padding:48px 0;border-top:2px solid rgba(124,86,64,0.2)">
+      <h2 style="font-family:Chivo,sans-serif;font-size:28px;color:#012d1d;margin-bottom:16px">Community Guardians</h2>
+      <p style="color:#414844;font-size:18px;line-height:1.7;margin-bottom:16px">
+        Since 2003, the <strong style="color:#7c5640">Local Steward Council</strong> has managed all cave access under a co-governance model recognized by the LGU of Kapalong. Half of its twelve seats are held by Ata-Manobo elders, ensuring that decisions about the cave honor both conservation science and indigenous cultural law.
+      </p>
+      <p style="color:#414844;font-size:18px;line-height:1.7;margin-bottom:28px">
+        The Council enforces a strict cap of <strong style="color:#012d1d">40 visitors per day</strong>, mandatory guide accompaniment, and a no-flash photography policy in the bat roost zone. Revenue from guided tours is split between cave maintenance, biodiversity monitoring, and an Ata-Manobo heritage preservation fund.
+      </p>
+      <button class="support-btn" style="background:#7c5640;color:white;padding:16px 36px;border:none;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.1em;text-transform:uppercase">SUPPORT PRESERVATION</button>
+    </section>
+
+    <!-- LIVE VITALS -->
+    <section style="padding:0 0 52px">
+      <div style="background:#f0ede9;border:1px solid rgba(113,121,115,0.3);padding:32px;border-radius:24px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:8px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:10px;height:10px;border-radius:50%;background:#012d1d;animation:pulse 1.5s infinite"></div>
+            <span style="font-size:12px;font-weight:700;text-transform:uppercase;color:#414844;letter-spacing:0.1em">Live Cavern Vitals</span>
+          </div>
+          <span id="vitals-time" style="font-size:11px;color:#414844;opacity:0.7;font-weight:700;text-transform:uppercase"></span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px">
+
+          <div class="vital-card" style="background:rgba(255,255,255,0.45);padding:20px;border-radius:12px;text-align:center;border:1px solid rgba(113,121,115,0.12)">
+            <span class="material-symbols-outlined" style="color:#7c5640;font-size:30px;display:block;margin-bottom:8px">thermostat</span>
+            <div style="font-family:Chivo,sans-serif;font-size:30px;color:#1c1c19">14°C</div>
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#414844;margin-top:4px">Ambient Temp</div>
+          </div>
+
+          <div class="vital-card" style="background:rgba(255,255,255,0.45);padding:20px;border-radius:12px;text-align:center;border:1px solid rgba(113,121,115,0.12)">
+            <span class="material-symbols-outlined" style="color:#7c5640;font-size:30px;display:block;margin-bottom:8px">humidity_percentage</span>
+            <div style="font-family:Chivo,sans-serif;font-size:30px;color:#1c1c19">92%</div>
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#414844;margin-top:4px">Humidity</div>
+          </div>
+
+          <div class="vital-card" style="background:rgba(255,255,255,0.45);padding:20px;border-radius:12px;text-align:center;border:1px solid rgba(113,121,115,0.12)">
+            <span class="material-symbols-outlined" style="color:#7c5640;font-size:30px;display:block;margin-bottom:8px">air</span>
+            <div style="font-family:Chivo,sans-serif;font-size:30px;color:#1c1c19">0.3<span style="font-size:14px;color:#414844"> m/s</span></div>
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#414844;margin-top:4px">Air Flow</div>
+          </div>
+
+          <div class="vital-card" style="background:rgba(255,255,255,0.45);padding:20px;border-radius:12px;text-align:center;border:1px solid rgba(113,121,115,0.12)">
+            <span class="material-symbols-outlined" style="color:#7c5640;font-size:30px;display:block;margin-bottom:8px">co2</span>
+            <div style="font-family:Chivo,sans-serif;font-size:30px;color:#1c1c19">812<span style="font-size:14px;color:#414844"> ppm</span></div>
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#414844;margin-top:4px">CO₂ Level</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div>
 </main>
+
+<!-- BOTTOM NAV -->
 <nav style="position:fixed;bottom:0;left:0;width:100%;z-index:50;background:rgba(252,249,245,0.95);border-top:1px solid rgba(193,200,194,0.15);backdrop-filter:blur(12px)">
-<div style="max-width:1280px;margin:0 auto;display:flex;justify-content:space-around;align-items:center;height:72px;padding:0 8px">
-<a href="/" style="display:flex;flex-direction:column;align-items:center;color:#414844;text-decoration:none;flex:1;padding:8px 0"><span class="material-symbols-outlined">home</span><span style="font-size:10px;font-weight:600">Welcome</span></a>
-<a href="/cave-history/" style="display:flex;flex-direction:column;align-items:center;color:#012d1d;text-decoration:none;flex:1;padding:8px 0;font-weight:700"><span class="material-symbols-outlined">history_edu</span><span style="font-size:10px;font-weight:700">History</span></a>
-<a href="/cave-guide/" style="display:flex;flex-direction:column;align-items:center;color:#414844;text-decoration:none;flex:1;padding:8px 0"><span class="material-symbols-outlined">map</span><span style="font-size:10px;font-weight:600">Guide</span></a>
-<a href="/safety/" style="display:flex;flex-direction:column;align-items:center;color:#414844;text-decoration:none;flex:1;padding:8px 0"><span class="material-symbols-outlined">security</span><span style="font-size:10px;font-weight:600">Safety</span></a>
-</div>
+  <div style="max-width:1280px;margin:0 auto;display:flex;justify-content:space-around;align-items:center;height:72px;padding:0 8px">
+    <a href="/" style="display:flex;flex-direction:column;align-items:center;color:#414844;text-decoration:none;flex:1;padding:8px 0"><span class="material-symbols-outlined">home</span><span style="font-size:10px;font-weight:600">Welcome</span></a>
+    <a href="/cave-history/" style="display:flex;flex-direction:column;align-items:center;color:#012d1d;text-decoration:none;flex:1;padding:8px 0"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">history_edu</span><span style="font-size:10px;font-weight:800">History</span></a>
+    <a href="/cave-guide/" style="display:flex;flex-direction:column;align-items:center;color:#414844;text-decoration:none;flex:1;padding:8px 0"><span class="material-symbols-outlined">map</span><span style="font-size:10px;font-weight:600">Guide</span></a>
+    <a href="/safety/" style="display:flex;flex-direction:column;align-items:center;color:#414844;text-decoration:none;flex:1;padding:8px 0"><span class="material-symbols-outlined">security</span><span style="font-size:10px;font-weight:600">Safety</span></a>
+  </div>
 </nav>
-<style>@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}</style>
+
+<script>
+  // Live timestamp for vitals
+  function updateTime() {
+    const now = new Date();
+    const h = now.getHours();
+    const m = String(now.getMinutes()).padStart(2,'0');
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    const h12 = h % 12 || 12;
+    document.getElementById('vitals-time').textContent = `Today, ${h12}:${m} ${ampm}`;
+  }
+  updateTime();
+  setInterval(updateTime, 60000);
+</script>
 </body></html>
